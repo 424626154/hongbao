@@ -12,6 +12,9 @@ class GameData {
     public static hongbao_h = 140;
     public static timer_time = 1000;
     public static moneys = new Array<number>();
+    public static GameTime = 10;
+    public static currentTime = 0;
+    public static hongbaos = new Array<HongBao>();
     /**
     * 屏幕宽度
     */

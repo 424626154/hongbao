@@ -34,6 +34,9 @@ var GameData = (function () {
     GameData.hongbao_h = 140;
     GameData.timer_time = 1000;
     GameData.moneys = new Array();
+    GameData.GameTime = 10;
+    GameData.currentTime = 0;
+    GameData.hongbaos = new Array();
     return GameData;
 })();
 egret.registerClass(GameData,"GameData");

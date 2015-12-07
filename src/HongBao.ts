@@ -4,15 +4,15 @@
  *
  */
 class HongBao extends egret.Sprite {
-    private scene: GameScene;
+    private hongbaoScene: HongBaoScene;
     private rect: egret.Shape;
     private init_rotation: number;
     private init_x: number;
     private init_y: number;
     private money: number;
-    public constructor(x: number,y:number,rotation: number,money: number,scene:GameScene) {
-        super();      
-        this.scene = scene;
+    public constructor(x: number,y: number,rotation: number,money: number,hongbaoScene: HongBaoScene) {
+        super();
+        this.hongbaoScene = hongbaoScene;
         this.init_x = x;
         this.init_y = y;
         this.init_rotation = rotation;
@@ -20,7 +20,7 @@ class HongBao extends egret.Sprite {
         this.init();
     }
     public init() {
-        this.scene.addChild(this);
+        this.hongbaoScene.addChild(this);
         this.rect = new egret.Shape();
         this.rect.graphics.beginFill(0xfe0000);
         this.rect.graphics.drawRoundRect(0,0,GameData.hongbao_w,GameData.hongbao_h,4,4);
@@ -63,28 +63,29 @@ class HongBao extends egret.Sprite {
         bao.y = hong.y + hong.height + 10;
         this.addChild(bao);
         this.x = this.init_x;
-        this.y =  -GameData.hongbao_h-this.init_y;
-//        egret.log(this.y);
+        this.y = -GameData.hongbao_h - this.init_y;
+        //        egret.log(this.y);
         this.rotation = this.init_rotation;
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclik,this);
         this.move();
+        GameData.hongbaos.push(this);
     }
-    
+
     public onclik() { 
-//        egret.log("onclik");
+        //        egret.log("onclik");
         egret.Tween.removeTweens(this);
         egret.Tween.get(this,{
             loop: false,//设置循环播放
             onChange: this.onScaleChange,//设置更新函数
             onChangeObj: this//更新函数作用域
         })
-        .to({ scaleX:1.2,scaleY:1.2},200)//设置2000毫秒内 rotation 属性变为90
-        .wait(100)//设置等待1000毫秒
+            .to({ scaleX: 1.2,scaleY: 1.2 },200)//设置2000毫秒内 rotation 属性变为90
+            .wait(100)//设置等待1000毫秒
             .call(this.onScaleComplete,this);
     }
 
-    public move() { 
+    public move() {
         var move_time = 2000 + (-this.y) * 10;
         //创建 Tween 对象
         egret.Tween.get(this,{
@@ -102,16 +103,16 @@ class HongBao extends egret.Sprite {
     }
 
     public onMoveComplete() {
-        this.scene.removeChild(this);
+        this.hongbaoScene.removeChild(this);
     }
-    
-    public onScaleChange() { 
-    
+
+    public onScaleChange() {
+
     }
-    
-    public onScaleComplete(){
-        this.scene.removeChild(this);       
+
+    public onScaleComplete() {
+        this.hongbaoScene.removeChild(this);
         GameData.moneys.push(this.money);
-        this.scene.refreshMoney();
+        this.hongbaoScene.gameScene.refreshMoney();
     }
 }

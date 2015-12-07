@@ -5,9 +5,9 @@
  */
 var HongBao = (function (_super) {
     __extends(HongBao, _super);
-    function HongBao(x, y, rotation, money, scene) {
+    function HongBao(x, y, rotation, money, hongbaoScene) {
         _super.call(this);
-        this.scene = scene;
+        this.hongbaoScene = hongbaoScene;
         this.init_x = x;
         this.init_y = y;
         this.init_rotation = rotation;
@@ -16,7 +16,7 @@ var HongBao = (function (_super) {
     }
     var d = __define,c=HongBao;p=c.prototype;
     p.init = function () {
-        this.scene.addChild(this);
+        this.hongbaoScene.addChild(this);
         this.rect = new egret.Shape();
         this.rect.graphics.beginFill(0xfe0000);
         this.rect.graphics.drawRoundRect(0, 0, GameData.hongbao_w, GameData.hongbao_h, 4, 4);
@@ -62,6 +62,7 @@ var HongBao = (function (_super) {
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclik, this);
         this.move();
+        GameData.hongbaos.push(this);
     };
     p.onclik = function () {
         //        egret.log("onclik");
@@ -90,14 +91,14 @@ var HongBao = (function (_super) {
     p.onMoveChange = function () {
     };
     p.onMoveComplete = function () {
-        this.scene.removeChild(this);
+        this.hongbaoScene.removeChild(this);
     };
     p.onScaleChange = function () {
     };
     p.onScaleComplete = function () {
-        this.scene.removeChild(this);
+        this.hongbaoScene.removeChild(this);
         GameData.moneys.push(this.money);
-        this.scene.refreshMoney();
+        this.hongbaoScene.gameScene.refreshMoney();
     };
     return HongBao;
 })(egret.Sprite);
