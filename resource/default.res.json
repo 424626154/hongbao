@@ -14,12 +14,37 @@
 			"name": "description",
 			"type": "json",
 			"url": "config/description.json"
+		},
+		{
+			"name": "gamebg",
+			"type": "image",
+			"url": "assets/gamebg.jpg"
+		},
+		{
+			"name": "button",
+			"type": "sound",
+			"url": "assets/button.ogg"
+		},
+		{
+			"name": "stick_grow_loop",
+			"type": "sound",
+			"url": "assets/stick_grow_loop.ogg"
+		},
+		{
+			"name": "score",
+			"type": "sound",
+			"url": "assets/score.ogg"
+		},
+		{
+			"name": "victory",
+			"type": "sound",
+			"url": "assets/victory.ogg"
 		}
 	],
 	"groups": [
 		{
 			"name": "preload",
-			"keys": "bgImage,egretIcon"
+			"keys": "bgImage,egretIcon,gamebg,button,stick_grow_loop,score,victory"
 		}
 	]
 }

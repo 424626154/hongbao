@@ -62,9 +62,13 @@ var HongBao = (function (_super) {
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclik, this);
         this.move();
-        GameData.hongbaos.push(this);
     };
     p.onclik = function () {
+        if (GameData.GAME_STATE != GameData.GAME_QIANG) {
+            return;
+        }
+        var sound = RES.getRes("stick_grow_loop");
+        sound.play(0, 1);
         //        egret.log("onclik");
         egret.Tween.removeTweens(this);
         egret.Tween.get(this, {
@@ -73,11 +77,11 @@ var HongBao = (function (_super) {
             onChangeObj: this //更新函数作用域
         })
             .to({ scaleX: 1.2, scaleY: 1.2 }, 200) //设置2000毫秒内 rotation 属性变为90
-            .wait(100) //设置等待1000毫秒
+            .wait(10) //设置等待1000毫秒
             .call(this.onScaleComplete, this);
     };
     p.move = function () {
-        var move_time = 2000 + (-this.y) * 10;
+        var move_time = 1000 + (-this.y) * 10;
         //创建 Tween 对象
         egret.Tween.get(this, {
             loop: false,

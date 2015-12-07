@@ -22,11 +22,11 @@ class StartScene extends egret.Sprite {
         start.textAlign = egret.HorizontalAlign.CENTER;
         start.verticalAlign = egret.VerticalAlign.MIDDLE;
         start.background = true;
-        start.backgroundColor = 0xffffff;
+        start.backgroundColor = 0xfaa755;
         start.border = true;
-        start.borderColor = 0x000000;
+        start.borderColor = 0xffffff;
         start.fontFamily = "Arial";
-        start.textColor = 0x000000;
+        start.textColor = 0x822810;
         start.size = 30;
         start.text = "开始游戏";
         start.width = 140;

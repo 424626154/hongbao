@@ -8,6 +8,7 @@ var ChaiScene = (function (_super) {
     function ChaiScene(gameScene) {
         _super.call(this);
         this.moneys = new Array();
+        this.skip = false;
         this.gameScene = gameScene;
         this.init();
     }
@@ -64,19 +65,31 @@ var ChaiScene = (function (_super) {
         chaiText.x = 0;
         chaiText.y = 0;
         this.chai.addChild(chaiText);
-        this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclik, this);
+        this.chai.touchEnabled = true;
+        this.chai.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclik, this);
+        if (GameData.chai_num == 0) {
+            this.skip = true;
+        }
     };
     p.onclik = function () {
         //        egret.log("onclik");
+        if (GameData.GAME_STATE != GameData.GAME_CHAI) {
+            return;
+        }
+        var sound = RES.getRes("stick_grow_loop");
+        sound.play(0, 1);
         this.tweenMoney();
     };
     p.tweenMoney = function () {
-        if (GameData.moneys.length <= 0) {
-            this.gameScene.endGame();
+        if (GameData.chai_num <= 0) {
+            if (this.skip) {
+                this.gameScene.endGame();
+            }
             return;
         }
-        var money_num = GameData.moneys.pop();
+        GameData.chai_num -= 1;
+        var money_num = GameData.moneys.pop() / 100;
+        GameData.all_money += money_num;
         var money = new egret.TextField();
         money.textAlign = egret.HorizontalAlign.CENTER;
         money.verticalAlign = egret.VerticalAlign.MIDDLE;
@@ -104,8 +117,15 @@ var ChaiScene = (function (_super) {
     };
     p.onScaleComplete = function () {
         var money = this.moneys[0];
-        this.removeChild(money);
+        //        this.removeChild(money);
+        //        egret.log(money.stage);
+        if (money.stage != null) {
+            this.removeChild(money);
+        }
         this.moneys.splice(0, 1);
+        if (GameData.chai_num <= 0) {
+            this.gameScene.endGame();
+        }
     };
     return ChaiScene;
 })(egret.Sprite);

@@ -10,11 +10,19 @@ class GameData {
     private static bgHeight: number = 0;  //屏幕高度
     public static hongbao_w = 80;
     public static hongbao_h = 140;
-    public static timer_time = 1000;
+    public static timer_time = 600;
     public static moneys = new Array<number>();
     public static GameTime = 10;
     public static currentTime = 0;
-    public static hongbaos = new Array<HongBao>();
+    public static all_money = 0;//所有money
+    public static hongba_num = 0;//红包个数
+    public static chai_num = 0;//需要拆的红包数量
+    
+    public static GAME_STATE = 0;//游戏状态
+    public static GAME_START = 1;//开始游戏
+    public static GAME_QIANG = 2;//抢红包
+    public static GAME_CHAI = 3;//拆红包
+    public static GAME_END = 4;//游戏结束
     /**
     * 屏幕宽度
     */

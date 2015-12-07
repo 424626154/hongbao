@@ -13,11 +13,14 @@ var HongBaoScene = (function (_super) {
     var d = __define,c=HongBaoScene;p=c.prototype;
     p.init = function () {
         this.gameScene.addChild(this);
-        var rect = new egret.Shape();
-        rect.graphics.beginFill(0xffffff);
-        rect.graphics.drawRect(0, 0, GameData.getBgWidth(), GameData.getBgHeight());
-        rect.graphics.endFill();
-        this.addChild(rect);
+        //        var rect = new egret.Shape();
+        //        rect.graphics.beginFill(0xffffff);
+        //        rect.graphics.drawRect(0,0,GameData.getBgWidth(),GameData.getBgHeight());
+        //        rect.graphics.endFill();
+        //        this.addChild(rect);
+        var bg = new egret.Bitmap();
+        bg.texture = RES.getRes("gamebg");
+        this.addChild(bg);
         this.timer = new egret.Timer(GameData.timer_time, 0);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.timerFunc, this);
     };
@@ -44,15 +47,6 @@ var HongBaoScene = (function (_super) {
     };
     p.endGame = function () {
         this.timer.stop();
-    };
-    p.clearHongbao = function () {
-        for (var i = 0; i < GameData.hongbaos.length; i++) {
-            var hongbao = GameData.hongbaos[i];
-            egret.log(hongbao);
-            egret.Tween.removeTweens(hongbao);
-            this.removeChild(hongbao);
-        }
-        GameData.hongbaos = new Array();
     };
     return HongBaoScene;
 })(egret.Sprite);
