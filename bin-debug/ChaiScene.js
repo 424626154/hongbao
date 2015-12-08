@@ -14,7 +14,7 @@ var ChaiScene = (function (_super) {
     }
     var d = __define,c=ChaiScene;p=c.prototype;
     p.init = function () {
-        this.gameScene.addChildAt(this, 1000);
+        this.gameScene.addChild(this);
         var bg = new egret.Shape();
         this.addChild(bg);
         this.graphics.beginFill(0x000000, 0.5);

@@ -39,12 +39,17 @@
 			"name": "victory",
 			"type": "sound",
 			"url": "assets/victory.ogg"
+		},
+		{
+			"name": "arrow",
+			"type": "image",
+			"url": "assets/arrow.png"
 		}
 	],
 	"groups": [
 		{
 			"name": "preload",
-			"keys": "bgImage,egretIcon,gamebg,button,stick_grow_loop,score,victory"
+			"keys": "bgImage,egretIcon,gamebg,button,stick_grow_loop,score,victory,arrow"
 		}
 	]
 }

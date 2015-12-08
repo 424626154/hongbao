@@ -10,6 +10,7 @@ class HongBao extends egret.Sprite {
     private init_x: number;
     private init_y: number;
     public money: number;
+    public life = true;
     public constructor(x: number,y: number,rotation: number,money: number,hongbaoScene: HongBaoScene) {
         super();
         this.hongbaoScene = hongbaoScene;
@@ -75,6 +76,10 @@ class HongBao extends egret.Sprite {
         if(GameData.GAME_STATE != GameData.GAME_QIANG) {
             return;
         }
+        if(!this.life){ 
+            return;
+        }
+        this.life = false;
         var sound: egret.Sound = RES.getRes("stick_grow_loop");
         sound.play(0,1);
         

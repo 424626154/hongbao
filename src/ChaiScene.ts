@@ -15,7 +15,7 @@ class ChaiScene extends egret.Sprite {
     }
 
     public init() {
-        this.gameScene.addChildAt(this,1000);
+        this.gameScene.addChild(this);
         var bg = new egret.Shape();
         this.addChild(bg);
         this.graphics.beginFill(0x000000,0.5);

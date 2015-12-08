@@ -44,6 +44,8 @@ var GameData = (function () {
     GameData.GAME_QIANG = 2; //抢红包
     GameData.GAME_CHAI = 3; //拆红包
     GameData.GAME_END = 4; //游戏结束
+    GameData.GAME_SHARE = 5; //分享引导
+    GameData.share_gui = true; //分享引导
     return GameData;
 })();
 egret.registerClass(GameData,"GameData");

@@ -14,6 +14,7 @@ var game_file_list = [
 	"bin-debug/GameScene.js",
 	"bin-debug/HongBao.js",
 	"bin-debug/HongBaoScene.js",
+	"bin-debug/HongBaoText.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	"bin-debug/StartScene.js",

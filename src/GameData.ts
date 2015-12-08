@@ -23,6 +23,9 @@ class GameData {
     public static GAME_QIANG = 2;//抢红包
     public static GAME_CHAI = 3;//拆红包
     public static GAME_END = 4;//游戏结束
+    public static GAME_SHARE = 5;//分享引导
+    
+    public static share_gui = true;//分享引导
     /**
     * 屏幕宽度
     */

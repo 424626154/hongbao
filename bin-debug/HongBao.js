@@ -7,6 +7,7 @@ var HongBao = (function (_super) {
     __extends(HongBao, _super);
     function HongBao(x, y, rotation, money, hongbaoScene) {
         _super.call(this);
+        this.life = true;
         this.hongbaoScene = hongbaoScene;
         this.init_x = x;
         this.init_y = y;
@@ -67,6 +68,10 @@ var HongBao = (function (_super) {
         if (GameData.GAME_STATE != GameData.GAME_QIANG) {
             return;
         }
+        if (!this.life) {
+            return;
+        }
+        this.life = false;
         var sound = RES.getRes("stick_grow_loop");
         sound.play(0, 1);
         //        egret.log("onclik");
